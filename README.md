@@ -1,16 +1,24 @@
 # dot_connect_flutter
 
-A new Flutter project.
+App for Braille teaching and Braille recognition
 
-## Getting Started
+</br>
 
-This project is a starting point for a Flutter application.
+## About
+### Core Concept
+1. Braille Recognition
+2. Braille Teaching
+3. Social Awareless for Braille
 
-A few resources to get you started if this is your first Flutter project:
+</br>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Tech Dependences
+1. Network : [Dio](https://github.com/flutterchina/dio)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. State ManageMent: [Riverpod](https://riverpod.dev/)
+
+</br>
+</br>
+
+## In App Screens
+TO BE ADDED...
