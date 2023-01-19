@@ -1,3 +1,5 @@
+import 'package:dot_connect_flutter/data/remote/network.dart';
+import 'package:dot_connect_flutter/data/remote/network_data/response/response_data.dart';
 import 'package:dot_connect_flutter/ui/pages/login_page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +10,7 @@ class HomePage extends ConsumerWidget {
   HomePage({super.key});
 
   String inputText = "";
+  String networkData = "UNDEFINED";
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,6 +44,16 @@ class HomePage extends ConsumerWidget {
               },
               child: Text(
                 "GO TO LOGIN",
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+            SizedBox(height: 10,),
+            GestureDetector(
+              onTap: () {
+                Network().getNameAPI() as NameAPIResponse;
+              },
+              child: Text(
+                "GET DATA FROM NETWORK",
                 style: TextStyle(color: Colors.blue),
               ),
             ),
