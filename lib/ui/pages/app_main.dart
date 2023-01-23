@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import '../constants/theme.dart';
 import 'home_page/home_page.dart';
 import 'login_page/login_page.dart';
 
@@ -12,9 +13,9 @@ class MainApp extends StatelessWidget {
     
     return MaterialApp(
       title: 'Flutter Demo',
-      // theme: ThemeData,
-      // darkTheme: ThemeData,
       themeMode: ThemeMode.system,
+      theme: nomalThemeData,
+      darkTheme: darkThemeData,
       home: loggedIn ? HomePage() : LoginPage(),
     );
   }
