@@ -1,3 +1,4 @@
+import 'package:dot_connect_flutter/ui/pages/login_page/login_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,6 +12,8 @@ class LoginPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myName = ref.watch(NameProvider);
+    var viewModel = LoginViewModel();
+
     return Scaffold(
       appBar: AppBar(title: Text("LoginPage")),
       body: Column(
@@ -28,6 +31,25 @@ class LoginPage extends ConsumerWidget {
               },
               child: Text(
                 "Done",
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+            SizedBox(height: 10,),
+            GestureDetector(
+              onTap: () {
+                viewModel.logIn(context);
+              },
+              child: Text(
+                "Login",
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                viewModel.logOut();
+              },
+              child: Text(
+                "Logout",
                 style: TextStyle(color: Colors.blue),
               ),
             ),
