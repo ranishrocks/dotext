@@ -1,0 +1,3 @@
+const String API_END_POINT_URL = "https://";
+const CONNECTION_TIMEOUT_MILLIS = 5000;
+const RECEIVE_TIMEOUT_MILLIS = 5000;

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "758270948258",
+    "project_id": "dot-connect-374203",
+    "storage_bucket": "dot-connect-374203.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758270948258:android:f87e276ae1c8509afe38fb",
+        "android_client_info": {
+          "package_name": "com.example.dot_connect_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758270948258-uug1fc6orhcrc69c3vcr90sejne8fbdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5M_dgEn6QYAi9xyvV1WDm2MZIZ1Pfr2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758270948258-uug1fc6orhcrc69c3vcr90sejne8fbdg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
