@@ -1,6 +1,8 @@
 import 'package:dot_connect_flutter/data/remote/network.dart';
 import 'package:dot_connect_flutter/data/remote/network_data/response/response_data.dart';
 import 'package:dot_connect_flutter/ui/pages/login_page/login_page.dart';
+import 'package:dot_connect_flutter/utils/route/route_paths.dart';
+import 'package:dot_connect_flutter/utils/route/route_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -40,7 +42,7 @@ class HomePage extends ConsumerWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                RouteUtil().pushNamed(context, RouteNames.login.path);
               },
               child: Text(
                 "GO TO LOGIN",
