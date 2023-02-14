@@ -8,9 +8,6 @@ import '../../../data/local/shared_preference/use_case.dart';
 class LoginViewModel{
   logIn(BuildContext context){
     setPrefLoggedIn(true);
-    RouteUtil().pushNamed(context, RouteNames.home.path);
-  }
-  logOut(){
-    setPrefLoggedIn(false);
+    RouteUtil().pushReplace(context, RouteNames.home.path);
   }
 }

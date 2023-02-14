@@ -1,1 +1,1 @@
-// TODO : fixed UI related data
+const String reportWebviewAddress = "https://flutter.dev";

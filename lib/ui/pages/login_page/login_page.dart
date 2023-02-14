@@ -1,8 +1,8 @@
-import 'package:dot_connect_flutter/ui/pages/login_page/login_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../states/name_state.dart';
+import '../../widgets/logo_widget.dart';
+import 'google_login_btn.dart';
 
 class LoginPage extends ConsumerWidget {
   LoginPage({super.key});
@@ -11,50 +11,32 @@ class LoginPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myName = ref.watch(NameProvider);
-    var viewModel = LoginViewModel();
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(title: Text("LoginPage")),
-      body: Column(
-        children: [
-          Text("name state in login : $myName"),
-          TextField(
-              decoration: InputDecoration(labelText: 'Input Name'),
-              onChanged: (text) {
-                inputText = text;
-              },
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Logo(
+              width: size.width * (0.8),
+              // marginTop: size.height * (0.1),
+              // marginBottom: 40,
             ),
-            GestureDetector(
-              onTap: () {
-                ref.read(NameProvider.notifier).state = inputText;
-              },
-              child: Text(
-                "Done",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-            SizedBox(height: 10,),
-            GestureDetector(
-              onTap: () {
-                viewModel.logIn(context);
-              },
-              child: Text(
-                "Login",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                viewModel.logOut();
-              },
-              child: Text(
-                "Logout",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-        ],
+            LoginButton()
+          ],
+        ),
       ),
     );
+  }
+}
+
+
+class LoginButton extends StatelessWidget {
+  LoginButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GoogleLoginBtn();
   }
 }

@@ -1,66 +1,25 @@
-import 'package:dot_connect_flutter/data/remote/network.dart';
-import 'package:dot_connect_flutter/data/remote/network_data/response/response_data.dart';
-import 'package:dot_connect_flutter/ui/pages/login_page/login_page.dart';
-import 'package:dot_connect_flutter/utils/route/route_paths.dart';
-import 'package:dot_connect_flutter/utils/route/route_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../states/name_state.dart';
+import 'logout_btn.dart';
+import 'option_list.dart';
+import 'appbar_home.dart';
 
 class HomePage extends ConsumerWidget {
   HomePage({super.key});
 
-  String inputText = "";
-  String networkData = "UNDEFINED";
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myName = ref.watch(NameProvider);
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(title: Text("HomePage")),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text("name state in home : $myName"),
-            SizedBox(height: 15,),
-            TextField(
-              decoration: InputDecoration(labelText: 'Input Name'),
-              onChanged: (text) {
-                inputText = text;
-              },
-            ),
-            GestureDetector(
-              onTap: () {
-                ref.read(NameProvider.notifier).state = inputText;
-              },
-              child: Text(
-                "Done",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                RouteUtil().pushNamed(context, RouteNames.login.path);
-              },
-              child: Text(
-                "GO TO LOGIN",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-            SizedBox(height: 10,),
-            GestureDetector(
-              onTap: () {
-                Network().getNameAPI() as NameAPIResponse;
-              },
-              child: Text(
-                "GET DATA FROM NETWORK",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-          ],
-        ),
+      appBar: HomeAppbar(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          OptionList(),
+          LogoutBtn(),
+        ],
       ),
     );
   }

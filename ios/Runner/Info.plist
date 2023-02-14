@@ -47,5 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Use Camera for braille detection</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Use Camera for braille detection</string>
 </dict>
 </plist>
