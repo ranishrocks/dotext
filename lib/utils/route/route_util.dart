@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 
 class RouteUtil {
-  void pushNamed(BuildContext context, String routeName, [Object? arguments]){
+  void push(BuildContext context, Widget widget){
     try {
-      Navigator.pushNamed(context, routeName, arguments: arguments);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (BuildContext context) => widget),
+      );
     } catch (e) {
       print(e);
     }
   }
 
-  void pushReplace(BuildContext context, String routeName){
+  void pushReplace(BuildContext context, Widget widget){
     try {
-      Navigator.pushReplacementNamed(context, routeName);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (BuildContext context) => widget),
+      );
     } catch (e) {
       print(e);
     }

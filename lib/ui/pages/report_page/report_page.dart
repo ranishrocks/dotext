@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../constants/fixed_data.dart';
-import '../../widgets/basic_appbar.dart';
+import '../../widgets/main_appbar.dart';
 
 class ReportPage extends StatefulWidget {
   const ReportPage({super.key});
@@ -36,7 +36,7 @@ class ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppbar(appbarString: "return to main"),
+      appBar: MainAppbar(appbarString: "return to main"),
       body: WebViewWidget(
         controller: webViewController,
       ),

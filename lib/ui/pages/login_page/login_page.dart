@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../constants/fixed_data.dart';
 import '../../widgets/logo_widget.dart';
 import 'google_login_btn.dart';
 
@@ -14,15 +15,12 @@ class LoginPage extends ConsumerWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Color(0xFFF4F4F4),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Logo(
-              width: size.width * (0.8),
-              // marginTop: size.height * (0.1),
-              // marginBottom: 40,
-            ),
+            Logo(width: size.width * (0.8)),
             LoginButton()
           ],
         ),
@@ -37,6 +35,12 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleLoginBtn();
+    Size size = MediaQuery.of(context).size;
+
+    return Container(
+      width: size.width - (pageHozPadding*2),
+      height: 40,
+      child: GoogleLoginBtn()
+    );
   }
 }

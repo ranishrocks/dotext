@@ -5,6 +5,7 @@ ThemeData nomalThemeData = ThemeData(
     color: Colors.white,
     elevation: 0,
   ),
+  backgroundColor: Colors.white,
 );
 
 ThemeData darkThemeData = ThemeData(
@@ -12,4 +13,5 @@ ThemeData darkThemeData = ThemeData(
     color: Colors.white,
     elevation: 0,
   ),
+  backgroundColor: Colors.white,
 );

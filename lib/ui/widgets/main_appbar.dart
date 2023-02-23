@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../utils/route/route_util.dart';
 import 'text_sized/text_small.dart';
 
-class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
-  BasicAppbar({super.key, this.appbarString}): preferredSize = Size.fromHeight(kToolbarHeight);
+class MainAppbar extends StatelessWidget implements PreferredSizeWidget {
+  MainAppbar({super.key, this.appbarString}): preferredSize = Size.fromHeight(kToolbarHeight);
 
   final String? appbarString;
 

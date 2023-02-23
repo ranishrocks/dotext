@@ -1,15 +1,18 @@
+import 'package:dot_connect_flutter/ui/pages/login_page/login_page.dart';
+import 'package:dot_connect_flutter/ui/pages/report_page/report_page.dart';
+import 'package:dot_connect_flutter/ui/pages/search_page/search_page.dart';
+import 'package:dot_connect_flutter/ui/pages/translate_cam_page/translate_cam_page.dart';
 import 'package:dot_connect_flutter/ui/states/view_mode_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/local/shared_preference/use_case.dart';
-import '../../../utils/route/route_paths.dart';
 import '../../../utils/route/route_util.dart';
 
 class HomeViewModel {
   logOut(BuildContext context){
     setPrefLoggedIn(false);
-    RouteUtil().pushReplace(context, RouteNames.login.path);
+    RouteUtil().pushReplace(context, LoginPage());
   }
   changeMode(WidgetRef ref) {
     ref.read(ModeProvider.notifier).state = ViewMode.detail;
@@ -17,12 +20,12 @@ class HomeViewModel {
 
   //routings
   routeToTransCam(BuildContext context){
-    RouteUtil().pushNamed(context, RouteNames.transCam.path);
+    RouteUtil().push(context, TranslateCamPage());
   }
   routeToSearch(BuildContext context){
-    RouteUtil().pushNamed(context, RouteNames.search.path);
+    RouteUtil().push(context, SearchPage());
   }
   routeToReport(BuildContext context){
-    RouteUtil().pushNamed(context, RouteNames.report.path);
+    RouteUtil().push(context, ReportPage());
   }
 }
