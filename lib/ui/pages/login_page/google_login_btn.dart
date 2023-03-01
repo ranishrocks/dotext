@@ -12,8 +12,8 @@ class GoogleLoginBtn extends StatelessWidget {
     
     return SignInButton(
       Buttons.Google,
-      onPressed: () {
-        viewModel.logIn(context);
+      onPressed: () async {
+        await viewModel.logIn(context);
       },
     );
   }
