@@ -1,3 +1,5 @@
+import 'package:dot_connect_flutter/ui/pages/home_page/home_page.dart';
+import 'package:dot_connect_flutter/ui/pages/home_page/home_page_detail.dart';
 import 'package:dot_connect_flutter/ui/pages/login_page/login_page.dart';
 import 'package:dot_connect_flutter/ui/pages/report_page/report_page.dart';
 import 'package:dot_connect_flutter/ui/pages/search_page/search_page.dart';
@@ -21,8 +23,16 @@ class HomeViewModel {
       print("Error while logout google : $e");
     }
   }
-  changeMode(WidgetRef ref) {
-    ref.read(ModeProvider.notifier).state = ViewMode.detail;
+  changeMode(BuildContext context, WidgetRef ref, ViewMode viewMode) {
+    if(viewMode == ViewMode.detail){
+      RouteUtil().pushReplace(context, HomePageDetail());
+      ref.read(ModeProvider.notifier).state = ViewMode.detail;
+
+
+    } else if(viewMode == ViewMode.simple){
+      RouteUtil().pushReplace(context, HomePage());
+      ref.read(ModeProvider.notifier).state = ViewMode.simple;
+    }
   }
 
   //routings

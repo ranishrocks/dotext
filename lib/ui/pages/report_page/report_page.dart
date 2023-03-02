@@ -5,7 +5,9 @@ import '../../constants/fixed_data.dart';
 import '../../widgets/main_appbar.dart';
 
 class ReportPage extends StatefulWidget {
-  const ReportPage({super.key});
+  const ReportPage({super.key, this.appbar});
+
+  final bool? appbar;
 
   @override
   State<ReportPage> createState() => ReportPageState();
@@ -36,7 +38,7 @@ class ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppbar(appbarString: "return to main"),
+      appBar: (widget.appbar ?? true) ? MainAppbar(appbarString: "return to main") : null,
       body: WebViewWidget(
         controller: webViewController,
       ),

@@ -11,7 +11,9 @@ import 'camera_view.dart';
 import 'camera_view_singleton.dart';
 
 class TranslateCamPage extends StatefulWidget {
-  const TranslateCamPage({Key? key}) : super(key: key);
+  const TranslateCamPage({Key? key, this.showBackBtn}) : super(key: key);
+
+  final bool? showBackBtn;
 
   @override
   State<TranslateCamPage> createState() => _TranslateCamPageState();
@@ -39,45 +41,48 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
           boundingBoxes(results),
 
           // Heading
-          Align(
-            alignment: Alignment.topLeft,
-            child: Container(
-              padding: EdgeInsets.only(top: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 24,),
-                  IconButton(
-                    padding: EdgeInsets.only(bottom: pageHozPadding),
-                    onPressed: () {
-                      RouteUtil().pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back, color: Colors.white,),
-                  ),
-                  SizedBox(height: 40,),
-                  Row(
-                    children: const [
-                      SizedBox(width: pageHozPadding,),
-                      Text(
-                        'Translate',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+          (widget.showBackBtn ?? true) ?
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                padding: EdgeInsets.only(top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 24,),
+                    IconButton(
+                      padding: EdgeInsets.only(bottom: pageHozPadding),
+                      onPressed: () {
+                        RouteUtil().pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back, color: Colors.white,),
+                    ),
+                    SizedBox(height: 40,),
+                    Row(
+                      children: const [
+                        SizedBox(width: pageHozPadding,),
+                        Text(
+                          'Translate',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
+            )
+            : Container(),
+          
           // Bottom Button
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.only(bottom: 40),
+              padding: EdgeInsets.only(bottom: bottomBtnFromBellow),
               child: BlackBtn(
                 text: "translate",
                 tapAction: () {

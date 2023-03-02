@@ -6,14 +6,16 @@ import '../../widgets/main_appbar.dart';
 import 'search_body.dart';
 
 class SearchPage extends StatelessWidget {
-  SearchPage({super.key});
+  SearchPage({super.key, this.appbar});
+
+  final bool? appbar;
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: MainAppbar(appbarString: "return to main"),
+      appBar: (appbar??true) ? MainAppbar(appbarString: "return to main") : null,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [

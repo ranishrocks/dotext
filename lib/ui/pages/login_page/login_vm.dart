@@ -1,4 +1,5 @@
 import 'package:dot_connect_flutter/ui/pages/home_page/home_page.dart';
+import 'package:dot_connect_flutter/ui/pages/home_page/home_page_detail.dart';
 import 'package:dot_connect_flutter/utils/route/route_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
