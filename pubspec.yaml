@@ -52,6 +52,9 @@ dependencies:
   image: ^3.0.2
   firebase_core: ^2.7.0
   google_sign_in: ^6.0.1
+  image_picker: ^0.8.6+4
+  flutter_pytorch: ^1.0.1
+  gif: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +83,8 @@ flutter:
     - assets/
     - assets/img/
     - assets/json/
+    - assets/labels/
+    - assets/models/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

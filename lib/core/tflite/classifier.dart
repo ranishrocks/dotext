@@ -17,14 +17,14 @@ class Classifier {
   /// Labels file loaded as list
   List<String>? _labels;
 
-  static const String MODEL_FILE_NAME = "detect.tflite";
+  static const String MODEL_FILE_NAME = "braille_binary_det-fp16.tflite";
   static const String LABEL_FILE_NAME = "labelmap.txt";
 
   /// Input size of image (height = width = 300)
-  static const int INPUT_SIZE = 300;
+  static const int INPUT_SIZE = 640;
 
   /// Result score threshold
-  static const double THRESHOLD = 0.5;
+  static const double THRESHOLD = 0.1;
 
   /// [ImageProcessor] used to pre-process the image
   ImageProcessor? imageProcessor;
@@ -39,7 +39,7 @@ class Classifier {
   List<TfLiteType>? _outputTypes;
 
   /// Number of results to show
-  static const int NUM_RESULTS = 10;
+  static const int NUM_RESULTS = 1;
 
   Classifier({
     Interpreter? interpreter,
@@ -84,7 +84,7 @@ class Classifier {
   TensorImage getProcessedImage(TensorImage inputImage) {
     padSize = max(inputImage.height, inputImage.width);
     imageProcessor ??= ImageProcessorBuilder()
-          .add(ResizeWithCropOrPadOp(padSize!, padSize!))
+          .add(ResizeWithCropOrPadOp(640, 640))
           .add(ResizeOp(INPUT_SIZE, INPUT_SIZE, ResizeMethod.BILINEAR))
           .build();
     inputImage = imageProcessor!.process(inputImage);

@@ -3,6 +3,7 @@ import 'package:dot_connect_flutter/ui/pages/home_page/home_page_detail.dart';
 import 'package:dot_connect_flutter/ui/pages/login_page/login_page.dart';
 import 'package:dot_connect_flutter/ui/pages/report_page/report_page.dart';
 import 'package:dot_connect_flutter/ui/pages/search_page/search_page.dart';
+import 'package:dot_connect_flutter/ui/pages/test/HomeScreen.dart';
 import 'package:dot_connect_flutter/ui/pages/translate_cam_page/translate_cam_page.dart';
 import 'package:dot_connect_flutter/ui/states/view_mode_state.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class HomeViewModel {
 
   //routings
   routeToTransCam(BuildContext context){
-    RouteUtil().push(context, TranslateCamPage());
+    RouteUtil().push(context, TestScreen());
   }
   routeToSearch(BuildContext context){
     RouteUtil().push(context, SearchPage());
