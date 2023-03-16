@@ -6,21 +6,21 @@ class NetworkErrorResp extends NetworkResponse {
   NetworkErrorResp({required this.errorCode, this.message});
 }
 
-class NameAPIResponse extends NetworkResponse {
-  String? name;
-  int? nameId;
+class BrailleInfoAPIResponse extends NetworkResponse {
+  late String str;
+  late List<int> braille;
 
-  NameAPIResponse({this.name, this.nameId});
+  BrailleInfoAPIResponse({required this.str, required this.braille});
 
-  NameAPIResponse.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    nameId = json['name_id'];
+  BrailleInfoAPIResponse.fromJson(Map<String, dynamic> json) {
+    str = json['str'];
+    braille = json['braille'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['name_id'] = nameId;
+    data['str'] = str;
+    data['braille'] = braille;
     return data;
   }
 }
