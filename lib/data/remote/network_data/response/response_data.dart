@@ -14,7 +14,17 @@ class BrailleInfoAPIResponse extends NetworkResponse {
 
   BrailleInfoAPIResponse.fromJson(Map<String, dynamic> json) {
     str = json['str'];
-    braille = json['braille'];
+    braille = _parseBrailles(json['braille']);
+  }
+
+  List<int> _parseBrailles(List<dynamic> data) {
+    List<int> brailleCodes = <int>[];
+
+    data.forEach((element) {
+      brailleCodes.add(element);
+    });
+
+    return brailleCodes;
   }
 
   Map<String, dynamic> toJson() {
