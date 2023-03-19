@@ -20,12 +20,17 @@ class TranslateCamViewModel {
 
     var objDetect = await _objectModel.getImagePrediction(
       await File(image!.path).readAsBytes(),
-      minimumScore: 0.01,
-      IOUThershold: 0.1
+      minimumScore: 0.1,
+      IOUThershold: 0.6
     );
 
     String wholeBraille = "";
 
+    //TODO : change it to sort in two factor
+    objDetect.sort((a, b) {
+      if(a==null || b==null) return 0;
+      return a.rect.left.compareTo(b.rect.left);
+    });
     objDetect.forEach((element) {
       print({
         "score": element?.score,
