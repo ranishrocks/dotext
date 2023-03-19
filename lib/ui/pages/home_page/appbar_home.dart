@@ -1,5 +1,7 @@
 import 'package:dot_connect_flutter/ui/pages/home_page/home_vm.dart';
+import 'package:dot_connect_flutter/ui/pages/search_page/search_page.dart';
 import 'package:dot_connect_flutter/ui/states/view_mode_state.dart';
+import 'package:dot_connect_flutter/utils/route/route_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,31 +34,32 @@ class ModeSetBtn extends ConsumerWidget {
 
     return PopupMenuButton(
       child: Center(child: Text_S(text: "mode select")),
-      itemBuilder: (context){
+      itemBuilder: (buildContext){
         return [
-          PopupMenuItem<int>(
-              value: 0,
+          PopupMenuItem(
+              value: "simple",
               child: Text("simple_mode"),
-              onTap: () {
-                var currentMode = ref.read(ModeProvider.notifier).state;
-                if(currentMode != ViewMode.simple){
-                  viewModel.changeMode(context, ref, ViewMode.simple);
-                }
-              },
           ),
-
-          PopupMenuItem<int>(
-              value: 1,
+          PopupMenuItem(
+              value: "detail",
               child: Text("detail_mode"),
-              onTap: () {
-                var currentMode = ref.read(ModeProvider.notifier).state;
-                if(currentMode != ViewMode.detail){
-                  viewModel.changeMode(context, ref, ViewMode.detail);
-                }
-              },
           ),
         ];
-      }
+      },
+      onSelected: (value) {
+        if(value=="detail"){
+          var currentMode = ref.read(ModeProvider.notifier).state;
+          if(currentMode != ViewMode.detail){
+            viewModel.changeMode(context, ref, ViewMode.detail);
+          }
+
+        } else if(value=="simple") {
+          var currentMode = ref.read(ModeProvider.notifier).state;
+          if(currentMode != ViewMode.simple){
+            viewModel.changeMode(context, ref, ViewMode.simple);
+          }
+        }
+      },
     );
   }
 }
