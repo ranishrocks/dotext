@@ -1,7 +1,5 @@
 import 'package:dot_connect_flutter/ui/pages/home_page/home_vm.dart';
-import 'package:dot_connect_flutter/ui/pages/search_page/search_page.dart';
 import 'package:dot_connect_flutter/ui/states/view_mode_state.dart';
-import 'package:dot_connect_flutter/utils/route/route_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
