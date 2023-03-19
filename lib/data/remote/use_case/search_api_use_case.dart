@@ -33,6 +33,7 @@ class SearchApiUseCase {
   }
 
   searchBraille(String braille) async {
+    print("braille in searchBraille : $braille");
     try {
       final searchDioRes = await dio.post(
         "/translation/braille",

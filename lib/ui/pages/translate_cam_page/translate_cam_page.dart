@@ -110,7 +110,6 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
               child: BlackBtn(
                 text: "translate",
                 tapAction: () {
-                  // vm.translate(context, "braille");
                   vm.runObjectDetection(context, objectModel);
                 },
               ),

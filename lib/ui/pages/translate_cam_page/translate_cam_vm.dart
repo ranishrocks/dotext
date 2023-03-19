@@ -20,8 +20,8 @@ class TranslateCamViewModel {
 
     var objDetect = await _objectModel.getImagePrediction(
       await File(image!.path).readAsBytes(),
-      minimumScore: 0.1,
-      IOUThershold: 0.6
+      minimumScore: 0.2,
+      IOUThershold: 0.5
     );
 
     String wholeBraille = "";
