@@ -45,7 +45,7 @@ class SearchApiUseCase {
         return errorCode; 
       }
 
-      List<BrailleInfoAPIResponse> resultList = (searchDioRes.data as List).map<BrailleInfoAPIResponse>((json) {
+      List<BrailleInfoAPIResponse> resultList = [searchDioRes.data].map<BrailleInfoAPIResponse>((json) {
         return BrailleInfoAPIResponse.fromJson(json);
       }).toList();
 

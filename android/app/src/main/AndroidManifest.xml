@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dot_connect_flutter">
    <application
-        android:label="dot_connect_flutter"
+        android:label="Conneting the Dots"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

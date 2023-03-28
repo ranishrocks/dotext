@@ -14,19 +14,19 @@ class OptionList extends StatelessWidget {
       shrinkWrap: true,
       children: [
         SingleOption(
-          title: "transCam",
+          title: "Translate",
           onPress: (){
             viewModel.routeToTransCam(context);
           },
         ),
         SingleOption(
-          title: "search",
+          title: "Search",
           onPress: (){
             viewModel.routeToSearch(context);
           },
         ),
         SingleOption(
-          title: "report",
+          title: "Report",
           onPress: (){
             viewModel.routeToReport(context);
           },

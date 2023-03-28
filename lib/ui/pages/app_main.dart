@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
         bool userLogIn = snapshot.hasData ? snapshot.data : false;
 
         return MaterialApp(
-          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.system,
           theme: nomalThemeData,
           darkTheme: darkThemeData,

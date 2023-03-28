@@ -20,7 +20,7 @@ class LoginPage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Logo(width: size.width * (0.8)),
+            Logo(width: size.width * (0.6), marginTop: 25,),
             LoginButton()
           ],
         ),
@@ -37,7 +37,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
       width: size.width - (pageHozPadding*2),
       height: 40,
       child: GoogleLoginBtn()

@@ -15,7 +15,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Logo(width: 68, height: 18),
+      title: Logo(width: 43, height: 20),
       actions: [
         ModeSetBtn()
       ],
@@ -31,16 +31,16 @@ class ModeSetBtn extends ConsumerWidget {
     var viewModel = HomeViewModel();
 
     return PopupMenuButton(
-      child: Center(child: Text_S(text: "mode select")),
+      child: Center(child: Text_S(text: "Select Mode")),
       itemBuilder: (buildContext){
         return [
           PopupMenuItem(
               value: "simple",
-              child: Text("simple_mode"),
+              child: Text("Simple Mode"),
           ),
           PopupMenuItem(
               value: "detail",
-              child: Text("detail_mode"),
+              child: Text("Detail Mode"),
           ),
         ];
       },

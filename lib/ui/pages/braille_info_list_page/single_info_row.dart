@@ -42,11 +42,14 @@ class _RowInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double textMaxWidth = (size.width - 100) / 2;
+
     return Row(
       children: [
-        Text_M(text: text),
+        Container(child: Text_M(text: text), constraints: BoxConstraints(maxWidth: textMaxWidth),),
         SizedBox(width: 24,),
-        Text_L(text: braille),
+        Container(child: Text_L(text: braille), constraints: BoxConstraints(maxWidth: textMaxWidth),),
       ],
     );
   }

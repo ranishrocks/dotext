@@ -16,7 +16,7 @@ class LogoutBtn extends StatelessWidget {
         onTap: () {
           viewModel.logOut(context);
         },
-        child: Text_S(text: "logout"),
+        child: Text_S(text: "Logout"),
       ),
     );
   }
