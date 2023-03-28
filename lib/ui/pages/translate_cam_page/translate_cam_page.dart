@@ -24,9 +24,8 @@ class TranslateCamPage extends StatefulWidget {
 class _TranslateCamPageState extends State<TranslateCamPage> {
 
   /// Results to draw bounding boxes
-  List<Recognition>? results;
+  // List<Recognition>? results;
   /// Realtime stats
-  Stats? stats;
   late ModelObjectDetection objectModel;
 
 
@@ -59,10 +58,10 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
       body: Stack(
         children: <Widget>[
           // Camera View
-          CameraView(resultsCallback, statsCallback),
+          CameraView(),
 
           // Bounding boxes
-          boundingBoxes(results),
+          // boundingBoxes(results),
 
           // Heading
           (widget.showBackBtn ?? true) ?
@@ -135,18 +134,8 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
   }
 
   /// Callback to get inference results from [CameraView]
-  void resultsCallback(List<Recognition> results) {
-    setState(() {
-      this.results = results;
-    });
-  }
-
-  /// Callback to get inference stats from [CameraView]
-  void statsCallback(Stats stats) {
-    setState(() {
-      this.stats = stats;
-    });
-  }
+  // void resultsCallback(List<Recognition> results) {
+  // }
 
   static const BOTTOM_SHEET_RADIUS = Radius.circular(24.0);
   static const BORDER_RADIUS_BOTTOM_SHEET = BorderRadius.only(

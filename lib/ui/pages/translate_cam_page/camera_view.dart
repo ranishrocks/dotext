@@ -3,23 +3,20 @@ import 'dart:isolate';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pytorch/flutter_pytorch.dart';
 
 import '../../../core/tflite/classifier.dart';
 import '../../../core/tflite/recognition.dart';
-import '../../../core/tflite/stats.dart';
 import '../../../utils/isolate_utils.dart';
 import 'camera_view_singleton.dart';
 
 /// [CameraView] sends each frame for inference
 class CameraView extends StatefulWidget {
   /// Callback to pass results after inference to [HomeView]
-  final Function(List<Recognition> recognitions) resultsCallback;
-
-  /// Callback to inference stats to [HomeView]
-  final Function(Stats stats) statsCallback;
+  // final Function(List<Recognition> recognitions) resultsCallback;
 
   /// Constructor
-  const CameraView(this.resultsCallback, this.statsCallback, {super.key});
+  const CameraView({super.key});
   @override
   _CameraViewState createState() => _CameraViewState();
 }
@@ -91,29 +88,110 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
     });
   }
 
+  void _runObjectDetection() async {
+    try {
+      //pick an image
+      final XFile? image = await cameraController?.takePicture();
+
+      if(image != null){
+        String pathObjectDetectionModel = "assets/models/braille_fixed_1500epoch.torchscript";
+        var objectModel = await FlutterPytorch.loadObjectDetectionModel(
+              pathObjectDetectionModel, 64, 640, 640,
+              labelPath: "assets/labels/labels.txt");
+
+        var objDetect = await objectModel.getImagePrediction(
+          await File(image.path).readAsBytes(),
+          minimumScore: 0.2,
+          IOUThershold: 0.5
+        );
+
+        String wholeBraille = "";
+
+        //TODO : change it to sort in two factor
+        objDetect.sort((a, b) {
+          if(a==null || b==null) return 0;
+          return a.rect.left.compareTo(b.rect.left);
+        });
+        objDetect.forEach((element) {
+          print({
+            "score": element?.score,
+            "className": element?.className,
+            "class": element?.classIndex,
+            "rect": {
+              "left": element?.rect.left,
+              "top": element?.rect.top,
+              "width": element?.rect.width,
+              "height": element?.rect.height,
+              "right": element?.rect.right,
+              "bottom": element?.rect.bottom,
+            },
+          });
+
+        //   if(element?.className!=null){
+        //     int detectedBraille = detectionToCharCode(element?.className as String);
+        //     if(detectedBraille>0) wholeBraille += String.fromCharCodes([detectedBraille]);
+        //   }
+        });
+
+        // var brailleResult = await SearchApiUseCase().searchBraille(wholeBraille);
+
+        // if(brailleResult.runtimeType==List<TextBraillePair>){
+        //   // ignore: use_build_context_synchronously
+        //   RouteUtil().push(context, BrailleInfoListPage(textToBrailleList: brailleResult));
+        // }
+      }
+      
+    } catch (e) {
+      print("error in running capture and ml : $e");
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final mediaSize = MediaQuery.of(context).size;
-    final scale = 1 / (cameraController!.value.aspectRatio * mediaSize.aspectRatio);
+    final scale = (cameraController!=null) 
+      ? 1 / (cameraController!.value.aspectRatio * mediaSize.aspectRatio)
+      : 1.0;
 
     // Return empty container while the camera is not initialized
     if (cameraController == null || !cameraController!.value.isInitialized) {
       return Container();
     }
 
-    return ClipRect(
-      clipper: _MediaSizeClipper(mediaSize),
-      child: Transform.scale(
-        scale: scale,
-        alignment: Alignment.topCenter,
-        child: CameraPreview(cameraController!)
-      ),
+    return Stack(
+      children: [
+        ClipRect(
+          clipper: _MediaSizeClipper(mediaSize),
+          child: Transform.scale(
+            scale: scale,
+            alignment: Alignment.topCenter,
+            child: CameraPreview(cameraController!)
+          ),
+        ),
+        
+        // Positioned(
+        //   top: 250,
+        //   left: 30,
+        //   child: IconButton(
+        //     onPressed: () {
+        //       try {
+        //         _runObjectDetection();
+        //       } catch (e) {
+        //         print("\n\n====\n\nerror while capturing and runing obj detct\n\n");
+        //       }
+              
+        //     },
+        //     icon: Icon(Icons.zoom_out_map_rounded)
+        //   ),
+        // )
+      ],
     );
   }
 
   /// Callback to receive each frame [CameraImage] perform inference on it
   onLatestImageAvailable(CameraImage cameraImage) async {
-    if (classifier!.interpreter != null && classifier!.labels != null) {
+    if (classifier!.interpreter != null) {
       // If previous inference has not completed then return
       if (predicting!) {
         return;
@@ -127,7 +205,7 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
       // Data to be passed to inference isolate
       var isolateData = IsolateData(
-          cameraImage, classifier!.interpreter!.address, classifier!.labels);
+          cameraImage, classifier!.interpreter!.address, []);
 
       // We could have simply used the compute method as well however
       // it would be as in-efficient as we need to continuously passing data
@@ -136,15 +214,8 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
       /// perform inference in separate isolate
       Map<String, dynamic> inferenceResults = await inference(isolateData);
 
-      var uiThreadInferenceElapsedTime =
-          DateTime.now().millisecondsSinceEpoch - uiThreadTimeStart;
-
       // pass results to HomeView
-      widget.resultsCallback(inferenceResults["recognitions"]);
-
-      // pass stats to HomeView
-      widget.statsCallback((inferenceResults["stats"] as Stats)
-        ..totalElapsedTime = uiThreadInferenceElapsedTime);
+      // widget.resultsCallback(inferenceResults["recognitions"]);
 
       // set predicting to false to allow new frames
       setState(() {

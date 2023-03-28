@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dot_connect_flutter/data/remote/use_case/search_api_use_case.dart';
@@ -56,7 +57,7 @@ class TranslateCamViewModel {
 
     if(brailleResult.runtimeType==List<TextBraillePair>){
       // ignore: use_build_context_synchronously
-      RouteUtil().push(context, BrailleInfoListPage(textToBrailleList: brailleResult));
+      RouteUtil().push(context, BrailleInfoListPage(textToBrailleList: brailleResult, titleType: TitleType.braille,));
     }
   }
 
