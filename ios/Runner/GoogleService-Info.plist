@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>758270948258-jmqsgke3aqkfgc5bjh3qod5c6fton86p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.758270948258-jmqsgke3aqkfgc5bjh3qod5c6fton86p</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>758270948258-ptg856i0vdhq0b6nikjq7queduu0pvql.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAv1wLpsXYlwiKnI7NChffjGhodFIHSVMg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>758270948258</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.dotConnectFlutter</string>
+	<key>PROJECT_ID</key>
+	<string>dot-connect-374203</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dot-connect-374203.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:758270948258:ios:f209f63de9d0ffe4fe38fb</string>
+</dict>
+</plist>
