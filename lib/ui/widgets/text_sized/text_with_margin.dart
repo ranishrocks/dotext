@@ -32,11 +32,11 @@ class TextWithMargin extends StatelessWidget {
     if(marginExist){
       return Container(
         margin: EdgeInsets.fromLTRB(leftMargin, topMargin, rightMargin, bottomMargin),
-        child: Text(text, style: textCustomStyle),
+        child: Text(text, style: textCustomStyle, overflow: TextOverflow.visible),
       );
 
     } else {
-      return Text(text, style: textCustomStyle);
+      return Text(text, style: textCustomStyle, overflow: TextOverflow.visible);
     }
   }
 }

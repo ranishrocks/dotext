@@ -37,9 +37,8 @@ class IsolateUtils {
       await for (final IsolateData isolateData in port) {
         if (isolateData != null) {
           Classifier classifier = Classifier(
-              interpreter:
-                  Interpreter.fromAddress(isolateData.interpreterAddress),
-              labels: isolateData.labels);
+              interpreter: Interpreter.fromAddress(isolateData.interpreterAddress),
+              );
           imageLib.Image image =
               ImageUtils.convertCameraImage(isolateData.cameraImage);
           if (Platform.isAndroid) {

@@ -15,7 +15,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Logo(width: 68, height: 18),
+      title: Logo(width: 43, height: 20),
       actions: [
         ModeSetBtn()
       ],
@@ -31,32 +31,33 @@ class ModeSetBtn extends ConsumerWidget {
     var viewModel = HomeViewModel();
 
     return PopupMenuButton(
-      child: Center(child: Text_S(text: "mode select")),
-      itemBuilder: (context){
+      child: Center(child: Text_S(text: "Select Mode")),
+      itemBuilder: (buildContext){
         return [
-          PopupMenuItem<int>(
-              value: 0,
-              child: Text("simple_mode"),
-              onTap: () {
-                var currentMode = ref.read(ModeProvider.notifier).state;
-                if(currentMode != ViewMode.simple){
-                  viewModel.changeMode(context, ref, ViewMode.simple);
-                }
-              },
+          PopupMenuItem(
+              value: "simple",
+              child: Text("Simple Mode"),
           ),
-
-          PopupMenuItem<int>(
-              value: 1,
-              child: Text("detail_mode"),
-              onTap: () {
-                var currentMode = ref.read(ModeProvider.notifier).state;
-                if(currentMode != ViewMode.detail){
-                  viewModel.changeMode(context, ref, ViewMode.detail);
-                }
-              },
+          PopupMenuItem(
+              value: "detail",
+              child: Text("Detail Mode"),
           ),
         ];
-      }
+      },
+      onSelected: (value) {
+        if(value=="detail"){
+          var currentMode = ref.read(ModeProvider.notifier).state;
+          if(currentMode != ViewMode.detail){
+            viewModel.changeMode(context, ref, ViewMode.detail);
+          }
+
+        } else if(value=="simple") {
+          var currentMode = ref.read(ModeProvider.notifier).state;
+          if(currentMode != ViewMode.simple){
+            viewModel.changeMode(context, ref, ViewMode.simple);
+          }
+        }
+      },
     );
   }
 }

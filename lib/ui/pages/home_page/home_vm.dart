@@ -13,7 +13,7 @@ import '../../../data/local/shared_preference/use_case.dart';
 import '../../../utils/route/route_util.dart';
 
 class HomeViewModel {
-  logOut(BuildContext context) async {
+  void logOut(BuildContext context) async {
     try {
       await GoogleSignIn().signOut();
 
@@ -23,7 +23,7 @@ class HomeViewModel {
       print("Error while logout google : $e");
     }
   }
-  changeMode(BuildContext context, WidgetRef ref, ViewMode viewMode) {
+  void changeMode(BuildContext context, WidgetRef ref, ViewMode viewMode) {
     if(viewMode == ViewMode.detail){
       RouteUtil().pushReplace(context, HomePageDetail());
       ref.read(ModeProvider.notifier).state = ViewMode.detail;
@@ -36,13 +36,13 @@ class HomeViewModel {
   }
 
   //routings
-  routeToTransCam(BuildContext context){
+  void routeToTransCam(BuildContext context){
     RouteUtil().push(context, TranslateCamPage());
   }
-  routeToSearch(BuildContext context){
+  void routeToSearch(BuildContext context){
     RouteUtil().push(context, SearchPage());
   }
-  routeToReport(BuildContext context){
+  void routeToReport(BuildContext context){
     RouteUtil().push(context, ReportPage());
   }
 }

@@ -25,7 +25,7 @@ class HomePageDetailState extends State<HomePageDetail> {
   final List<Widget> _widgetOptions = <Widget>[
     TranslateCamPage(showBackBtn: false,),
     SearchPage(appbar: false),
-    ReportPage(appbar: false),
+    ReportPage(appbar: false, isDetail: true),
   ];
 
   @override

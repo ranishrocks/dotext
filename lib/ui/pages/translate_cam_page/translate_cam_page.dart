@@ -3,6 +3,8 @@ import 'package:dot_connect_flutter/ui/pages/translate_cam_page/translate_cam_vm
 import 'package:dot_connect_flutter/ui/widgets/black_btn.dart';
 import 'package:dot_connect_flutter/utils/route/route_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_pytorch/flutter_pytorch.dart';
 
 import '../../../core/tflite/recognition.dart';
 import '../../../core/tflite/stats.dart';
@@ -22,10 +24,31 @@ class TranslateCamPage extends StatefulWidget {
 class _TranslateCamPageState extends State<TranslateCamPage> {
 
   /// Results to draw bounding boxes
-  List<Recognition>? results;
-
+  // List<Recognition>? results;
   /// Realtime stats
-  Stats? stats;
+  late ModelObjectDetection objectModel;
+
+
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
+
+  Future loadModel() async {
+    String pathObjectDetectionModel = "assets/models/braille_fixed_1500epoch.torchscript";
+    try {
+      objectModel = await FlutterPytorch.loadObjectDetectionModel(
+          pathObjectDetectionModel, 64, 640, 640,
+          labelPath: "assets/labels/labels.txt");
+    } catch (e) {
+      if (e is PlatformException) {
+        print("only supported for android, Error is $e");
+      } else {
+        print("Error is $e");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +58,10 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
       body: Stack(
         children: <Widget>[
           // Camera View
-          CameraView(resultsCallback, statsCallback),
+          CameraView(),
 
           // Bounding boxes
-          boundingBoxes(results),
+          // boundingBoxes(results),
 
           // Heading
           (widget.showBackBtn ?? true) ?
@@ -86,7 +109,7 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
               child: BlackBtn(
                 text: "translate",
                 tapAction: () {
-                  vm.translate(context, "braille");
+                  vm.runObjectDetection(context, objectModel);
                 },
               ),
             ),
@@ -111,18 +134,8 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
   }
 
   /// Callback to get inference results from [CameraView]
-  void resultsCallback(List<Recognition> results) {
-    setState(() {
-      this.results = results;
-    });
-  }
-
-  /// Callback to get inference stats from [CameraView]
-  void statsCallback(Stats stats) {
-    setState(() {
-      this.stats = stats;
-    });
-  }
+  // void resultsCallback(List<Recognition> results) {
+  // }
 
   static const BOTTOM_SHEET_RADIUS = Radius.circular(24.0);
   static const BORDER_RADIUS_BOTTOM_SHEET = BorderRadius.only(
