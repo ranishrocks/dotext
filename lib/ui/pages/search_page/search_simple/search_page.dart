@@ -1,8 +1,8 @@
 import 'package:dot_connect_flutter/ui/widgets/text_sized/text_medium.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/fixed_data.dart';
-import '../../widgets/main_appbar.dart';
+import '../../../constants/fixed_data.dart';
+import '../../../widgets/main_appbar.dart';
 import 'search_body.dart';
 
 class SearchPage extends StatelessWidget {

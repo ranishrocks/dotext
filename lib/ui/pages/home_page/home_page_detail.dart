@@ -1,7 +1,7 @@
+import 'package:dot_connect_flutter/ui/pages/search_page/search_detail/search_page_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../report_page/report_page.dart';
-import '../search_page/search_page.dart';
 import '../translate_cam_page/translate_cam_page.dart';
 import 'appbar_home.dart';
 
@@ -24,7 +24,7 @@ class HomePageDetailState extends State<HomePageDetail> {
 
   final List<Widget> _widgetOptions = <Widget>[
     TranslateCamPage(showBackBtn: false,),
-    SearchPage(appbar: false),
+    SearchPageDetail(),
     ReportPage(appbar: false, isDetail: true),
   ];
 
