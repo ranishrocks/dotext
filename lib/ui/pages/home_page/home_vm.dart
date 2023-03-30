@@ -13,12 +13,17 @@ import '../../../data/local/shared_preference/use_case.dart';
 import '../../../utils/route/route_util.dart';
 
 class HomeViewModel {
-  void logOut(BuildContext context) async {
+  void logOut(BuildContext context, WidgetRef ref,) async {
     try {
       await GoogleSignIn().signOut();
 
+      //reset states
       setPrefLoggedIn(false);
+      ref.read(ModeProvider.notifier).state = ViewMode.simple;
+
+      //go to logout screen
       RouteUtil().pushReplace(context, LoginPage());
+
     } catch (e) {
       print("Error while logout google : $e");
     }

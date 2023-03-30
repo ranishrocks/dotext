@@ -32,7 +32,7 @@ class HomePageDetailState extends State<HomePageDetail> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: HomeAppbar(),
+      appBar: HomeAppbar(isDetailMode: true,),
       body: SafeArea(
         child: IndexedStack(
           index: _selectedIndex,

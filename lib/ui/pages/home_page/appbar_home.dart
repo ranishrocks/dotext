@@ -7,24 +7,28 @@ import '../../widgets/logo_widget.dart';
 import '../../widgets/text_sized/text_small.dart';
 
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
-  HomeAppbar({super.key}) : preferredSize = Size.fromHeight(kToolbarHeight);
+  HomeAppbar({super.key, this.isDetailMode}) : preferredSize = Size.fromHeight(kToolbarHeight);
+
+  final bool? isDetailMode;
 
   @override
   final Size preferredSize; // default is 56.0
 
   @override
   Widget build(BuildContext context) {
+    bool detailMode = isDetailMode ?? false;
     return AppBar(
       title: Logo(width: 43, height: 20),
-      actions: [
-        ModeSetBtn()
-      ],
+      actions: detailMode ? [
+        _ModeSetBtn(),
+        _LogoutBtn(),
+      ] :[_ModeSetBtn()],
     );
   }
 }
 
-class ModeSetBtn extends ConsumerWidget {
-  ModeSetBtn({super.key});
+class _ModeSetBtn extends ConsumerWidget {
+  _ModeSetBtn({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -58,6 +62,22 @@ class ModeSetBtn extends ConsumerWidget {
           }
         }
       },
+    );
+  }
+}
+
+class _LogoutBtn extends ConsumerWidget {
+  _LogoutBtn({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    var vm = HomeViewModel();
+
+    return IconButton(
+      onPressed: (){
+        vm.logOut(context, ref);
+      },
+      icon: Icon(Icons.logout, color: Colors.black,)
     );
   }
 }
