@@ -27,7 +27,7 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
   // List<Recognition>? results;
   /// Realtime stats
   late ModelObjectDetection objectModel;
-
+  bool _loading = false;
 
   @override
   void initState() {
@@ -108,12 +108,25 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
               padding: EdgeInsets.only(bottom: bottomBtnFromBellow),
               child: BlackBtn(
                 text: "translate",
-                tapAction: () {
-                  vm.runObjectDetection(context, objectModel);
+                tapAction: () async {
+                  setState(() {
+                    _loading = true;
+                  });
+                  await vm.runObjectDetection(context, objectModel);
+                  setState(() {
+                    _loading = false;
+                  });
                 },
               ),
             ),
           ),
+
+          (_loading)
+          ? Align(
+            alignment: Alignment.center,
+            child: CircularProgressIndicator()
+          )
+          : Container()
         ],
       ),
     );

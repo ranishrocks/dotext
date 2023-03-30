@@ -2,7 +2,8 @@ import 'package:dot_connect_flutter/ui/pages/search_page/search_vm.dart';
 import 'package:dot_connect_flutter/ui/widgets/black_btn.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/fixed_data.dart';
+import '../../../constants/fixed_data.dart';
+
 
 class SearchBody extends StatefulWidget {
   const SearchBody({super.key});

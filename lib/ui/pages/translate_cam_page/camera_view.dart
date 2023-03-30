@@ -88,65 +88,6 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
     });
   }
 
-  void _runObjectDetection() async {
-    try {
-      //pick an image
-      final XFile? image = await cameraController?.takePicture();
-
-      if(image != null){
-        String pathObjectDetectionModel = "assets/models/braille_fixed_1500epoch.torchscript";
-        var objectModel = await FlutterPytorch.loadObjectDetectionModel(
-              pathObjectDetectionModel, 64, 640, 640,
-              labelPath: "assets/labels/labels.txt");
-
-        var objDetect = await objectModel.getImagePrediction(
-          await File(image.path).readAsBytes(),
-          minimumScore: 0.2,
-          IOUThershold: 0.5
-        );
-
-        String wholeBraille = "";
-
-        //TODO : change it to sort in two factor
-        objDetect.sort((a, b) {
-          if(a==null || b==null) return 0;
-          return a.rect.left.compareTo(b.rect.left);
-        });
-        objDetect.forEach((element) {
-          print({
-            "score": element?.score,
-            "className": element?.className,
-            "class": element?.classIndex,
-            "rect": {
-              "left": element?.rect.left,
-              "top": element?.rect.top,
-              "width": element?.rect.width,
-              "height": element?.rect.height,
-              "right": element?.rect.right,
-              "bottom": element?.rect.bottom,
-            },
-          });
-
-        //   if(element?.className!=null){
-        //     int detectedBraille = detectionToCharCode(element?.className as String);
-        //     if(detectedBraille>0) wholeBraille += String.fromCharCodes([detectedBraille]);
-        //   }
-        });
-
-        // var brailleResult = await SearchApiUseCase().searchBraille(wholeBraille);
-
-        // if(brailleResult.runtimeType==List<TextBraillePair>){
-        //   // ignore: use_build_context_synchronously
-        //   RouteUtil().push(context, BrailleInfoListPage(textToBrailleList: brailleResult));
-        // }
-      }
-      
-    } catch (e) {
-      print("error in running capture and ml : $e");
-    }
-  }
-
-
   @override
   Widget build(BuildContext context) {
     final mediaSize = MediaQuery.of(context).size;
@@ -169,22 +110,6 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
             child: CameraPreview(cameraController!)
           ),
         ),
-        
-        // Positioned(
-        //   top: 250,
-        //   left: 30,
-        //   child: IconButton(
-        //     onPressed: () {
-        //       try {
-        //         _runObjectDetection();
-        //       } catch (e) {
-        //         print("\n\n====\n\nerror while capturing and runing obj detct\n\n");
-        //       }
-              
-        //     },
-        //     icon: Icon(Icons.zoom_out_map_rounded)
-        //   ),
-        // )
       ],
     );
   }
