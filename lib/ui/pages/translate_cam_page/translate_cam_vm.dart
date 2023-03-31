@@ -14,13 +14,13 @@ import '../../../entities/braille_info_page_entity.dart';
 
 class TranslateCamViewModel {
   ///detect object by ML model
-  Future<void> runObjectDetection(BuildContext context, ModelObjectDetection _objectModel) async {
+  Future<void> runObjectDetection(BuildContext context, ModelObjectDetection? objectModel) async {
     try {
       //pick an image
       ImagePicker picker = ImagePicker();
       final XFile? image = await picker.pickImage(source: ImageSource.camera);
 
-      var objDetect = await _objectModel.getImagePrediction(
+      var objDetect = await objectModel?.getImagePrediction(
         await File(image!.path).readAsBytes(),
         minimumScore: 0.3,
         IOUThershold: 0.2
@@ -29,11 +29,11 @@ class TranslateCamViewModel {
       String wholeBraille = "";
 
       //TODO : change it to sort in two factor
-      objDetect.sort((a, b) {
+      objDetect?.sort((a, b) {
         if(a==null || b==null) return 0;
         return a.rect.left.compareTo(b.rect.left);
       });
-      objDetect.forEach((element) {
+      objDetect?.forEach((element) {
         print({
           "score": element?.score,
           "className": element?.className,

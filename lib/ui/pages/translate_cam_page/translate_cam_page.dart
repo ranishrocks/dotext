@@ -26,7 +26,7 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
   /// Results to draw bounding boxes
   // List<Recognition>? results;
   /// Realtime stats
-  late ModelObjectDetection objectModel;
+  ModelObjectDetection? objectModel;
   bool _loading = false;
 
   @override
@@ -109,13 +109,22 @@ class _TranslateCamPageState extends State<TranslateCamPage> {
               child: BlackBtn(
                 text: "translate",
                 tapAction: () async {
-                  setState(() {
-                    _loading = true;
-                  });
-                  await vm.runObjectDetection(context, objectModel);
-                  setState(() {
-                    _loading = false;
-                  });
+                  try {
+                    setState(() {
+                      _loading = true;
+                    });
+                    await vm.runObjectDetection(context, objectModel);
+                    setState(() {
+                      _loading = false;
+                    });
+
+                  } catch (e) {
+                    setState(() {
+                      _loading = false;
+                    });
+                    print("error while runing translate with btn : $e");
+                  }
+                  
                 },
               ),
             ),

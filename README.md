@@ -4,18 +4,23 @@ App for Braille teaching and Braille recognition. This is a part of google solut
 
 You can find other part of our solution in this [repository](https://github.com/inshining/ConnetingTheDots-GDSC-Solution-Challenge-2023).
 
+</br></br>
+
+## APK
+Dowload apk for android [HERE!](https://drive.google.com/file/d/1E8bA4USMCyfeo7sZTLlj5UNWw3JewiZR/view?usp=sharing)
+
 </br>
 
-## How to run code
+## Run Code locally
 if you wish to run this code locally, follow the steps bellow
 
 1. install dependency
 2. skip login code (you cannot use google login since you don't have the build key)
 3. check out the rest of our code
 
-</br>
+</br></br>
 
-## About
+## About Project
 ### Core Concept
 1. Braille Recognition
 2. Braille Teaching
@@ -36,6 +41,8 @@ if you wish to run this code locally, follow the steps bellow
 </br></br>
 
 ## Architecture
+This project's architecture was inspired by [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), [Bloc](https://pub.dev/packages/bloc) and [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
+
 ```
 lib
 ├── core
