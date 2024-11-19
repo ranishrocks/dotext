@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.system,
-          theme: nomalThemeData,
+          theme: normalThemeData,
           darkTheme: darkThemeData,
           home: userLogIn ? HomePage() : LoginPage(),
         );

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-ThemeData nomalThemeData = ThemeData(
+ThemeData normalThemeData = ThemeData(
   appBarTheme: AppBarTheme(
     color: Colors.white,
     elevation: 0,
   ),
-  backgroundColor: Colors.white,
+  scaffoldBackgroundColor: Colors.white,
+  brightness: Brightness.light,
 );
 
 ThemeData darkThemeData = ThemeData(
   appBarTheme: AppBarTheme(
-    color: Colors.white,
+    color: Colors.black,
     elevation: 0,
   ),
-  backgroundColor: Colors.white,
+  scaffoldBackgroundColor: Colors.black,
+  brightness: Brightness.dark,
 );
